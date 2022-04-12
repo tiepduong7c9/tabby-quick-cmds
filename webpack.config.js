@@ -20,18 +20,9 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.ts$/,
-        use: {
-          loader: 'awesome-typescript-loader',
-          options: {
-            configFileName: path.resolve(__dirname, 'tsconfig.json'),
-            typeRoots: [path.resolve(__dirname, 'node_modules/@types')],
-            paths: {
-              "terminus-*": [path.resolve(__dirname, '../terminus-*')],
-              "*": [path.resolve(__dirname, '../app/node_modules/*')],
-            }
-          }
-        }
+        test: /\.tsx?$/,
+        loader: 'ts-loader',
+        exclude: /node_modules/,
       },
       { test: /\.pug$/, use: ['apply-loader', 'pug-loader'] },
       { test: /\.scss$/, use: ['to-string-loader', 'css-loader', 'sass-loader'] },

@@ -2,7 +2,7 @@ import { Component } from '@angular/core'
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap'
 import { ConfigService, AppService, BaseTabComponent, SplitTabComponent } from 'terminus-core'
 import { QuickCmds, ICmdGroup } from '../api'
-import { TerminalTabComponent } from 'terminus-terminal';
+import { BaseTerminalTabComponent as TerminalTabComponent } from 'terminus-terminal';
 
 @Component({
     template: require('./quickCmdsModal.component.pug'),
