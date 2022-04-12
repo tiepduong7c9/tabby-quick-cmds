@@ -37,14 +37,23 @@ export class QuickCmdsModalComponent {
         this.close()
     }
 
-    _send (tab: BaseTabComponent, cmd: string) {
+    _send (tab: BaseTabComponent, cmd: string) {    
+        
         if (tab instanceof SplitTabComponent) {
             this._send((tab as SplitTabComponent).getFocusedTab(), cmd)
         }
         if (tab instanceof TerminalTabComponent) {
             let currentTab = tab as TerminalTabComponent
+
             console.log("Sending " + cmd);
-            currentTab.sendInput(cmd)
+
+            let cmds=cmd.split(/(?:\r\n|\r|\n)/)
+
+            for(let cmd of cmds) {
+                console.log("Sending " + cmd);
+                currentTab.sendInput(cmd+"\n");
+            }
+
         }
     }
 

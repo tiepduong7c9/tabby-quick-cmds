@@ -10,8 +10,9 @@
 
     .form-group
         label Text
-        input.form-control(
-            type='text', 
+        textarea.form-control(
+            rows=6,
+            style="white-space: pre-line",
             placeholder="Text to be sent",
             [(ngModel)]='command.text', 
         )
