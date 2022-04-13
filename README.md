@@ -6,4 +6,6 @@ Quick commands for terminus
 
 The default shortcut for opening the Quick Commands menu is `Alt+Q` for Windows.
 
-Sorry everyone, I am not using terminus anymore, this project is abandoned, feel free to fork.
+# update
+1. update dependencies to latest, fixed build error
+2. add support for multiline command
