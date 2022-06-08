@@ -51,7 +51,15 @@ export class QuickCmdsModalComponent {
 
             for(let cmd of cmds) {
                 console.log("Sending " + cmd);
+
+                if(cmd.startsWith('\\x')){
+                    cmd = cmd.replace(/\\x([0-9a-f]{2})/ig, function(_, pair) {
+                            return String.fromCharCode(parseInt(pair, 16));
+                        });
+                }
+
                 currentTab.sendInput(cmd+"\n");
+                
             }
 
         }
