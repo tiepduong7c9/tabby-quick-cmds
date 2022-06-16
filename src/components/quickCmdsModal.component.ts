@@ -4,6 +4,7 @@ import { ConfigService, AppService, BaseTabComponent, SplitTabComponent } from '
 import { QuickCmds, ICmdGroup } from '../api'
 import { BaseTerminalTabComponent as TerminalTabComponent } from 'terminus-terminal';
 
+
 @Component({
     template: require('./quickCmdsModal.component.pug'),
     styles: [require('./quickCmdsModal.component.scss')],
@@ -37,7 +38,11 @@ export class QuickCmdsModalComponent {
         this.close()
     }
 
-    _send (tab: BaseTabComponent, cmd: string) {    
+    sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    async _send (tab: BaseTabComponent, cmd: string) {    
         
         if (tab instanceof SplitTabComponent) {
             this._send((tab as SplitTabComponent).getFocusedTab(), cmd)
@@ -51,6 +56,17 @@ export class QuickCmdsModalComponent {
 
             for(let cmd of cmds) {
                 console.log("Sending " + cmd);
+
+
+                if(cmd.startsWith('\\s')){
+                    cmd=cmd.replace('\\s','');
+                    let sleepTime=parseInt(cmd);
+
+                    await this.sleep(sleepTime);
+
+                    console.log('sleep time: ' + sleepTime);
+                    continue;
+                }
 
                 if(cmd.startsWith('\\x')){
                     cmd = cmd.replace(/\\x([0-9a-f]{2})/ig, function(_, pair) {
