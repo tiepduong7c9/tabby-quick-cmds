@@ -1,10 +1,11 @@
 {
-  "name": "terminus-quick-cmds",
-  "version": "1.1.0",
-  "description": "Quick commands manager for Terminus",
-  "homepage": "https://github.com/Domain/terminus-quick-cmds",
+  "name": "tabby-quick-cmds",
+  "version": "1.0.0",
+  "description": "Quick commands manager for Tabby",
+  "homepage": "https://github.com/minyoad/terminus-quick-cmds",
   "keywords": [
     "terminus-plugin",
+	"tabby-plugin",
     "quick-commands"
   ],
   "main": "dist/index.js",
@@ -16,7 +17,7 @@
   "files": [
     "dist"
   ],
-  "author": "Domain",
+  "author": "minyoad",
   "license": "MIT",
   "devDependencies": {
     "@types/webpack-env": "^1.16.3",
@@ -54,5 +55,12 @@
     "terminus-settings": "^1.0.140",
     "terminus-terminal": "^1.0.140",
     "ts-loader": "^9.2.8"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/minyoad/terminus-quick-cmds.git"
+  },
+  "bugs": {
+    "url": "https://github.com/minyoad/terminus-quick-cmds/issues"
   }
 }

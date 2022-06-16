@@ -1,6 +1,6 @@
-# terminus-quick-cmds
+# tabby-quick-cmds
 
-Quick commands for terminus
+Quick commands plugin for tabby
 
 # Shortcuts
 
