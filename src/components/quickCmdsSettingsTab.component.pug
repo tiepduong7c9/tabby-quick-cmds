@@ -9,7 +9,7 @@ h3 Quick Commands
             button.btn.btn-outline-info.ml-2((click)='editGroup(group)')
                 i.fa.fa-pencil
             button.btn.btn-outline-danger.ml-1((click)='deleteGroup(group)')
-                i.fa.fa-trash-o
+                i.fa.fa-trash-can 
         ng-container(*ngIf='!groupCollapsed[group.name]')
             .list-group-item.pl-5.d-flex.align-items-center(*ngFor='let cmd of group.cmds') 
                 .mr-auto
@@ -18,7 +18,7 @@ h3 Quick Commands
                 button.btn.btn-outline-info.ml-2((click)='editCommand(cmd)')
                     i.fa.fa-pencil
                 button.btn.btn-outline-danger.ml-1((click)='deleteCommand(cmd)')
-                    i.fa.fa-trash-o
+                    i.fa.fa-trash-can 
                     
 button.btn.btn-outline-primary((click)='createCommand()')
     div.fa.fa-fw.fa-globe
