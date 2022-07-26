@@ -9,6 +9,7 @@ import { PromptModalComponent } from './promptModal.component'
     template: require('./quickCmdsSettingsTab.component.pug'),
 })
 export class QuickCmdsSettingsTabComponent {
+    quickCmd: string
     commands: QuickCmds[]
     childGroups: ICmdGroup[]
     groupCollapsed: {[id: string]: boolean} = {}
@@ -82,20 +83,31 @@ export class QuickCmdsSettingsTabComponent {
         }
     }
 
+    cancelFilter(){
+        this.quickCmd=''
+        this.refresh()
+    }
+
     refresh () {
         this.childGroups = []
 
-        for (let command of this.commands) {
-            command.group = command.group || null
-            let group = this.childGroups.find(x => x.name === command.group)
+        let cmds = this.commands
+        if (this.quickCmd) {
+            cmds = cmds.filter(cmd => (cmd.name + cmd.group + cmd.text).toLowerCase().includes(this.quickCmd))
+        }
+
+        for (let cmd of cmds) {
+            cmd.group = cmd.group || null
+            let group = this.childGroups.find(x => x.name === cmd.group)
             if (!group) {
                 group = {
-                    name: command.group,
+                    name: cmd.group,
                     cmds: [],
                 }
                 this.childGroups.push(group)
             }
-            group.cmds.push(command)
+            group.cmds.push(cmd)
         }
     }
+   
 }

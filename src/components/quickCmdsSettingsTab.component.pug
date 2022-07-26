@@ -1,5 +1,18 @@
 h3 Quick Commands
 
+.form-group
+    button.btn.btn-outline-primary((click)='createCommand()')
+        div.fa.fa-fw.fa-globe
+        span.ml-2 Add command
+.form-group
+    input.form-control.quickCmd(
+        type='text', 
+        [(ngModel)]='quickCmd', 
+        autofocus, 
+        placeholder='enter to filter', 
+        (ngModelChange)='refresh()',
+        (keyup.esc)='cancelFilter()'
+    )
 .list-group.mt-3.mb-3
     ng-container(*ngFor='let group of childGroups') 
         .list-group-item.list-group-item-action.d-flex.align-items-center((click)='groupCollapsed[group.name] = !groupCollapsed[group.name]')
@@ -20,6 +33,4 @@ h3 Quick Commands
                 button.btn.btn-outline-danger.ml-1((click)='deleteCommand(cmd)')
                     i.fa.fa-trash-can 
                     
-button.btn.btn-outline-primary((click)='createCommand()')
-    div.fa.fa-fw.fa-globe
-    span.ml-2 Add command
+
