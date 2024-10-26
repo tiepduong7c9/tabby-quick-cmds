@@ -1,8 +1,8 @@
 {
   "name": "tabby-quick-cmds",
-  "version": "1.0.2",
+  "version": "1.0.0",
   "description": "Quick commands manager for Tabby",
-  "homepage": "https://github.com/minyoad/terminus-quick-cmds",
+  "homepage": "https://github.com/minyoad/tabby-quick-cmds",
   "keywords": [
     "terminus-plugin",
     "tabby-plugin",
@@ -17,50 +17,36 @@
   "files": [
     "dist"
   ],
-  "author": "minyoad",
+  "author": "tiepduong7c9",
   "license": "MIT",
   "devDependencies": {
-    "@types/webpack-env": "^1.16.3",
-    "apply-loader": "^2.0.0",
-    "awesome-typescript-loader": "^5.2.1",
-    "css-loader": "^6.7.1",
-    "electron": "^18.0.3",
-    "node-sass": "^7.0.1",
-    "pug": "^3.0.2",
-    "pug-loader": "^2.4.0",
-    "sass-loader": "^12.6.0",
-    "svg-inline-loader": "^0.8.2",
-    "to-string-loader": "^1.2.0",
-    "typescript": "^4.6.3",
-    "webpack": "^5.72.0",
-    "webpack-cli": "^4.9.2"
-  },
-  "peerDependencies": {
-    "@angular/common": "^4.1.3",
-    "@angular/core": "^4.1.3",
-    "@angular/forms": "^4.1.3",
-    "@ng-bootstrap/ng-bootstrap": "^1.0.0-alpha.29",
-    "terminus-core": "*",
-    "terminus-settings": "*",
-    "terminus-terminal": "*"
+    "webpack": "^5.86.0",
+    "webpack-cli": "^5.0.1"
   },
   "dependencies": {
-    "@angular/common": "^13.3.2",
-    "@angular/core": "^13.3.2",
-    "@angular/forms": "^13.3.2",
-    "@ng-bootstrap/ng-bootstrap": "^12.0.2",
-    "node": "14.15.0",
-    "rxjs": "^7.5.5",
+    "@angular/common": "^15.2.6",
+    "@angular/core": "^15.2.6",
+    "@angular/forms": "^15.2.6",
+    "@ng-bootstrap/ng-bootstrap": "^14.1.0",
+    "apply-loader": "^2.0.0",
+    "css-loader": "^7.1.2",
+    "pug": "^3.0.3",
+    "pug-loader": "^2.4.0",
+    "sass": "^1.80.4",
+    "sass-loader": "^16.0.2",
+    "svg-inline-loader": "^0.8.2",
     "terminus-core": "^1.0.140",
     "terminus-settings": "^1.0.140",
     "terminus-terminal": "^1.0.140",
-    "ts-loader": "^9.2.8"
+    "to-string-loader": "^1.2.0",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.6.3"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/minyoad/terminus-quick-cmds.git"
+    "url": "git+https://github.com/tiepduong7c9/tabby-quick-cmds.git"
   },
   "bugs": {
-    "url": "https://github.com/minyoad/terminus-quick-cmds/issues"
+    "url": "https://github.com/tiepduong7c9/tabby-quick-cmds/issues"
   }
 }
