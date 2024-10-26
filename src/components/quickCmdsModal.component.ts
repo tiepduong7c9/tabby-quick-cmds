@@ -29,7 +29,20 @@ export class QuickCmdsModalComponent {
     }
 
     quickSend () {
-        this._send(this.app.activeTab, this.quickCmd + (this.appendCR ? "\n" : ""))
+        if (this.childGroups.length > 0 && this.childGroups[0].cmds.length > 0) {
+            // Execute active/selected command
+            for (let group of this.childGroups) {
+                for (let cmd of group.cmds) {
+                    if (cmd.active) {
+                        this._send(this.app.activeTab, cmd.text + (cmd.appendCR ? "\n" : ""))
+                        this.close()
+                        return
+                    }
+                }
+            }
+        } else {
+            this._send(this.app.activeTab, this.quickCmd + (this.appendCR ? "\n" : ""));
+        }
         this.close()
     }
 
@@ -131,10 +144,15 @@ export class QuickCmdsModalComponent {
 
         let cmds = this.cmds
         if (this.quickCmd) {
-            cmds = cmds.filter(cmd => (cmd.name + cmd.group + cmd.text).toLowerCase().includes(this.quickCmd))
+            const searchTerms = this.quickCmd.toLowerCase().split(/\s+/).filter(term => term);
+            cmds = cmds.filter(cmd => {
+                const cmdString = (cmd.name + cmd.group + cmd.text).toLowerCase();
+                return searchTerms.every(term => cmdString.includes(term));
+            });
         }
 
         for (let cmd of cmds) {
+
             cmd.group = cmd.group || null
             let group = this.childGroups.find(x => x.name === cmd.group)
             if (!group) {
@@ -144,7 +162,57 @@ export class QuickCmdsModalComponent {
                 }
                 this.childGroups.push(group)
             }
-            group.cmds.push(cmd)
+            group.cmds.push({...cmd})
+        }
+
+        // Set the first command as active
+        if (this.childGroups[0].cmds[0]) {
+            this.childGroups[0].cmds[0].active = true;
+        }
+    }
+
+    // Handle arrow key navigation
+    navigateCommands(direction: string) {
+        if (direction === 'down') {
+            let update = false;
+            let activeCmd = null;
+            for (let group of this.childGroups) {
+                for (let cmd of group.cmds) {
+                    if (cmd.active) {
+                        update = true;
+                        activeCmd = cmd;
+                    }
+                    else if (update) {
+                        cmd.active = true;
+                        activeCmd.active = false;
+                        this.scrollIntoView();
+                        return;
+                    }
+                }
+            }
+        } else if (direction === 'up') {
+            let prevCmd = null;
+            for (let group of this.childGroups) {
+                for (let cmd of group.cmds) {
+                    if (cmd.active) {
+                        if (prevCmd) {
+                            prevCmd.active = true;
+                            cmd.active = false;
+                            this.scrollIntoView();
+                            return;
+                        }
+                    }
+                    prevCmd = cmd;
+                }
+            }
+        }
+    }
+
+    // Optional: Scroll the active item into view if the list is long
+    scrollIntoView() {
+        const activeElement = document.querySelector('.list-group-item.active');
+        if (activeElement) {
+            activeElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
     }
 }

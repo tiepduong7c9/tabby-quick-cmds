@@ -8,8 +8,10 @@
             (ngModelChange)='refresh()',
             (keyup.enter)='quickSend()',
             (keyup.control.enter)='quickSendAll()',
+            (keydown.arrowdown)='navigateCommands("down")',
+            (keydown.arrowup)='navigateCommands("up")'
         )
-        toggle.ml-1(
+        toggle.ms-1(
             title="Automatically append a '\\n' char to the end",
             [(ngModel)]='appendCR',
         )
@@ -22,14 +24,14 @@
             )
                 .fa.fa-fw.fa-chevron-right(*ngIf='groupCollapsed[group.name]')
                 .fa.fa-fw.fa-chevron-down(*ngIf='!groupCollapsed[group.name]')
-                .ml-2 {{group.name || "Ungrouped"}}
+                .ms-2 {{group.name || "Ungrouped"}}
             ng-container(*ngIf='!groupCollapsed[group.name]')
                 .list-group-item.list-group-item-action.pl-5.d-flex.align-items-center(
-                    *ngFor='let cmd of group.cmds', 
+                    *ngFor='let cmd of group.cmds; let i = index', 
                     (click)='send(cmd, $event)',
+                    [ngClass]="{'active': cmd.active}",
                     title="Ctrl + Click send to all",
                 )
-                    .mr-auto
+                    .me-auto
                         div {{cmd.name}}
                         .text-muted {{cmd.text}}{{cmd.appendCR ? "\\n" : ""}}
-                        

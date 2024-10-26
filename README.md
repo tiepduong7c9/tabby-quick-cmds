@@ -4,7 +4,7 @@ Quick commands plugin for tabby
 
 # Build
 
-NodeJS 20.x
+NodeJs 20.x
 
 ```
 npm install --legacy-peer-deps
@@ -14,8 +14,11 @@ npm run build
 # Shortcuts
 
 The default shortcut for opening the Quick Commands menu is `Alt+Q`.
+
 # Update
 1. Clean up and update dependencies
+2. Improve command filtering
+3. Navigate command list by arrow keys
 
 # Update (minyoad)
 1. Update dependencies to latest, fixed build error
